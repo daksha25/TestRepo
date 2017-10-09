@@ -1,0 +1,26 @@
+1)	Validate Multiple node options, using Node Label parameter.
+2)	Pass node name from build with parameter.
+3)	Set matrix based authentication and trigger the Jenkins job with some user tokens using rest api. Don’t give any privileges for anonym’s user.
+4)	Get Comfortable with DSL scripts & BlueOcean.
+5)	Create 2 job 2 user, configure the job, give all access to users, Trigger 2nd job with 2nd user authentication token using rest api from 1st job.
+
+1)One job can run on different node
+by selecting allow multi node selection for concurrent build manually
+-- Tick option as build concurrent
+it will run the build one after another as separate build on node as available in list(sorted)
+-- Upstream and downstream job 
+
+upstream job by default on node 1 if trigger build manually option
+call downstream job from it and select first option other than manually with different node it will run
+
+
+3)to Build job with Remote API
+
+select option :-
+Trigger builds remotely (e.g., from scripts) 
+Run with Postman : Use the following URL to trigger build remotely: JENKINS_URL/view/Daksha_Task/job/Node_Test2/build?token=TOKEN_NAME or /buildWithParameters?token=TOKEN_NAME
+
+
+http://10.219.193.108:8080/view/Daksha_Task/job/Node_Test5/buildWithParameters?node1=52Machine
+
+go to manage jenkins --> globel config --> untick Prevent Cross Site Request Forgery exploits option to run it with postman

@@ -1,0 +1,115 @@
+﻿
+1) Go through DSL job . Create a job with checkout from scm repo & executing build &  test cases and trigger the downstream job also. Pass Git url and goals as parameterized.
+
+
+
+Solution:
+Solution:
+
+1) Created one job with Parameterized build (Passed Git_Url and Goal as Perameters) -
+
+       
+                
+2) DSL script to create job, Checkout from Git and trigger the job –
+
+       Script
+       
+       
+       
+       
+       
+       def thr = Thread.currentThread()
+       def build = thr.executable
+       def git_url=build.environment.get( "Git_Url" )
+       def goal=build.environment.get("Goal")
+       job('Test_DSLTutorial1') {
+           scm {
+               git
+             		{
+                     remote{
+                       url(git_url)
+                       credentials('610067f4-b867-4371-92fd-9ea36d1bbabf')
+                     }
+                   }      			
+             	}
+              	triggers 
+         		{
+               		scm('H/15 * * * *')
+           		}
+           	steps  			{
+               		maven(goal)
+           		}
+       }
+
+
+       
+
+3) Build job with Parameters - 
+
+
+
+4) Output - 
+       
+
+5) Console Output of downstream job which get created and triggered automatically –
+
+
+
+
+
+
+
+
+
+
+
+
+2) Create a job with manual approval process in Jenkins, It has to wait for the user to proceed the maven build build after git checkout.
+
+It can be done with pipeline 
+
+Script :
+
+
+
+
+
+
+
+
+
+
+node ('master')
+{
+      stage('Preparation') {
+     
+      git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+     
+   }
+}
+    stage('Run Target')
+    {
+    input "Run Maven Target?"
+    }
+node ('master') {
+   stage('Maven Target')
+   {
+         bat(/"D:\apache-maven-3.1.1\bin\mvn" -Dmaven.test.failure.ignore clean /)
+    }
+    }
+
+
+
+
+Create 2 user (user1 , user2) , login as user1 ,  create the job1 with shell or bash and trigger curl with user2 authentication token to job2, and validate which job 2 console and check which user has triggered.
+
+
+curl -X POST -u Daksha:daksha http://localhost:8080/job/Test_Deploy/build
+
+here we are passing the username and password so it will trigger the job by same user(for g. even though he job is created by user2 it will trigger the job with Daksha user)
+
+This will trigger the job only when the user1 (“Daksha”)  have overall Administer permissions.
+
+for downstream job :
+with which user you will trigger upstream job downstream will get triggerd with same.
+

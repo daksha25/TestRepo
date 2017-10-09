@@ -1,0 +1,4 @@
+Mongodb -
+
+Unclean shutdown detected. - error while running mongod
+use mongod --repair

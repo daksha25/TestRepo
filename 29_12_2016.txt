@@ -1,0 +1,17 @@
+how to produce jar of  simple java program (which is not maven project)
+
+right click on project -- >export --> java -->jar -->give name and location
+
+it will give error when you will run it like 
+java -jar "jar file " "inputs"
+error - no main menifest
+
+to solve this run command like -
+
+java -cp jarfile main_class_name "input"
+
+
+http://stackoverflow.com/questions/19250966/failing-to-run-jar-file-from-command-line-no-main-manifest-attribute
+
+
+https://msdn.microsoft.com/en-us/library/4y2ash30(v=vs.100).aspx
