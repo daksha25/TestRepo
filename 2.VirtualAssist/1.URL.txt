@@ -1,0 +1,1 @@
+https://54.245.106.61/auth/realms/VPA/login-actions/authenticate?code=QMp0ZxwD3Kqq0F5v1MKmJmsR07wPhY7TRDufGCtDW24.1ba4b2de-53f0-427a-b94c-bc8e4dc97032&execution=ce8a287b-ce51-443f-bd1b-12024ab98a3a
